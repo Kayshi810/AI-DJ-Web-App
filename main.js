@@ -38,6 +38,7 @@ function gotPoses(results)
     {
         console.log(results);
         score_left_wrist=results[0].pose.keypoints[9].score;
+        score_right_wrist=results[0].pose.keypoints[10].score;
         left_wrist_x=results[0].pose.leftWrist.x;
         left_wrist_y=results[0].pose.leftWrist.y;
         console.log("Left_Wrist_X = "+left_wrist_x+", Left_Wrist_Y = "+left_wrist_y);
@@ -65,6 +66,19 @@ function draw() {
     {
 			song_2.play();
 			document.getElementById("song").innerHTML = "Playing - Peter Pan";
+		}
+	}
+    song_status = song.isPlaying();
+	fill("#e85aed");
+	stroke("#e85aed");
+	if(score_right_wrist > 0.2)
+    {
+		circle(right_wrist_x,right_wrist_y,20);
+			song_2.stop();
+	if(song_2_status == false)
+    {
+			song.play();
+			document.getElementById("song").innerHTML = "Playing - Harry Potter";
 		}
 	}
 
